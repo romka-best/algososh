@@ -36,7 +36,7 @@ export const FibonacciPage: React.FC = () => {
                 const generatorValue = generatorAlgorithm.next();
 
                 setNumbers(() => {
-                    const newState = [];
+                    const newState: Array<number> = [];
                     for (let i = 0; i < generatorValue.value.length; i++) {
                         newState.push(generatorValue.value[i])
                     }

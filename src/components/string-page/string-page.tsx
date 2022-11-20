@@ -48,7 +48,7 @@ export const StringPage: React.FC = () => {
                 const generatorValue = generatorAlgorithm.next();
 
                 setInputValue(() => {
-                    const newState = [];
+                    const newState: Array<IValue> = [];
                     for (let i = 0; i < generatorValue.value.length; i++) {
                         newState.push(generatorValue.value[i])
                     }

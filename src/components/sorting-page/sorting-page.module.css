@@ -1,0 +1,36 @@
+.root {
+
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 48px;
+}
+
+.radioButtons {
+    display: flex;
+    gap: 40px
+}
+
+.choiceButtons {
+    display: flex;
+    gap: 12px;
+
+    margin: 0 80px 0 52px;
+}
+
+.generateButton {
+
+}
+
+.columns {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+
+    height: 340px;
+}
