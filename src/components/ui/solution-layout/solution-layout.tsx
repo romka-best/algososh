@@ -37,7 +37,7 @@ export const SolutionLayout: React.FC<SolutionLayoutProps> = ({
       <p
         className={`text text_type_column text_color_input mt-14 ${styles.copyright}`}
       >
-        © Сделано в Практикуме.
+        © Сделано в Практикуме Романом Даниловым.
       </p>
     </main>
   );
