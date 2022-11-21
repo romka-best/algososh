@@ -39,6 +39,7 @@ export const StackPage: React.FC = () => {
                 pushToStack(stack, {value: currentInputValue, type: ElementStates.Default}) :
                 popFromStack(stack);
             setCurrentInputValue("");
+
             const interval = window.setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
