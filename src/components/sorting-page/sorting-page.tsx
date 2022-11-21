@@ -40,8 +40,7 @@ export const SortingPage: React.FC = () => {
     const handleResetButton = React.useCallback((event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        const newArray = randomArr();
-        setArrayOfNumbers(newArray);
+        setArrayOfNumbers(randomArr());
     }, [randomArr]);
 
     React.useEffect(() => {
@@ -69,6 +68,10 @@ export const SortingPage: React.FC = () => {
         }
     }, [isLoading]);
 
+    React.useEffect(() => {
+        setArrayOfNumbers(randomArr());
+    }, []);
+
     return (
         <SolutionLayout title="Сортировка массива">
             <div className={styles.root}>
@@ -95,7 +98,7 @@ export const SortingPage: React.FC = () => {
                         <Button
                             text="По возрастанию"
                             sorting={Direction.Ascending}
-                            disabled={isLoading || !arrayOfNumbers.length}
+                            disabled={isLoading}
                             isLoader={isLoading && byTypeSort === "По возрастанию"}
                             onClick={() => {
                                 setByTypeSort("По возрастанию");
@@ -105,7 +108,7 @@ export const SortingPage: React.FC = () => {
                         <Button
                             text="По убыванию"
                             sorting={Direction.Descending}
-                            disabled={isLoading || !arrayOfNumbers.length}
+                            disabled={isLoading}
                             isLoader={isLoading && byTypeSort === "По убыванию"}
                             onClick={() => {
                                 setByTypeSort("По убыванию");
@@ -120,20 +123,18 @@ export const SortingPage: React.FC = () => {
                         type="reset"
                     />
                 </form>
-                {arrayOfNumbers.length ? (
-                    <div className={styles.columns}>
-                        {
-                            arrayOfNumbers.map((value, index) => (
-                                    <Column
-                                        key={index}
-                                        value={value.number}
-                                        state={value.type}
-                                    />
-                                )
+                <div className={styles.columns}>
+                    {
+                        arrayOfNumbers.map((value, index) => (
+                                <Column
+                                    key={index}
+                                    value={value.number}
+                                    state={value.type}
+                                />
                             )
-                        }
-                    </div>
-                ) : null}
+                        )
+                    }
+                </div>
             </div>
         </SolutionLayout>
     );
@@ -164,8 +165,8 @@ function* choiceSortAlgorithm(array: Array<IValue>, type: byTypeSort): Generator
     for (let i = 0; i < length; i++) {
         let minOrMax = i;
         for (let j = i; j < length; j++) {
-            if ((type === "По возрастанию" && array[j].number <= array[minOrMax].number) ||
-                (type === "По убыванию" && array[j].number >= array[minOrMax].number)) {
+            if ((type === "По возрастанию" && array[j].number < array[minOrMax].number) ||
+                (type === "По убыванию" && array[j].number > array[minOrMax].number)) {
                 minOrMax = j;
             }
         }
@@ -214,8 +215,8 @@ function* choiceSortAlgorithm(array: Array<IValue>, type: byTypeSort): Generator
 function* bubbleSortAlgorithm(array: Array<IValue>, type: byTypeSort): Generator<Array<IValue>> {
     for (let j = array.length - 1; j >= 0; j--) {
         for (let i = 0; i < j; i++) {
-            if ((type === "По возрастанию" && array[i].number <= array[i + 1].number) ||
-                (type === "По убыванию" && array[i].number >= array[i + 1].number)) {
+            if ((type === "По возрастанию" && array[i].number > array[i + 1].number) ||
+                (type === "По убыванию" && array[i].number < array[i + 1].number)) {
                 const temp = array[i];
                 array[i] = {
                     number: array[i + 1].number,
