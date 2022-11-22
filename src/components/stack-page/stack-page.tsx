@@ -40,7 +40,7 @@ export const StackPage: React.FC = () => {
                 popFromStack(stack);
             setCurrentInputValue("");
 
-            const interval = window.setInterval(() => {
+            const interval = setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
                 setStack(() => {
@@ -52,7 +52,7 @@ export const StackPage: React.FC = () => {
                 });
 
                 if (generatorValue.done) {
-                    window.clearInterval(interval);
+                    clearInterval(interval);
                     setIsLoading(false);
                 }
             }, SHORT_DELAY_IN_MS);
@@ -65,13 +65,13 @@ export const StackPage: React.FC = () => {
                 <form className={styles.form} onSubmit={handleSubmitButton} onReset={handleResetButton}>
                     <Input
                         extraClass={styles.input}
+                        placeholder="Введите значение"
                         isLimitText={true}
                         maxLength={4}
                         disabled={isLoading}
                         value={currentInputValue}
-                        onChange={(event: React.SyntheticEvent) => {
-                            // @ts-ignore
-                            setCurrentInputValue(String(event.target.value));
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                            setCurrentInputValue(String(event.currentTarget.value));
                         }}
                     />
                     <Button

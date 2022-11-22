@@ -44,7 +44,7 @@ export const StringPage: React.FC = () => {
     React.useEffect(() => {
         if (isLoading) {
             const generatorAlgorithm = reverseAlgorithm(inputValue);
-            const interval = window.setInterval(() => {
+            const interval = setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
                 setInputValue(() => {
@@ -56,7 +56,7 @@ export const StringPage: React.FC = () => {
                 });
 
                 if (generatorValue.done) {
-                    window.clearInterval(interval);
+                    clearInterval(interval);
                     setIsLoading(false);
                     setIsFinished(true);
                 }
@@ -73,15 +73,13 @@ export const StringPage: React.FC = () => {
                         isLimitText={true}
                         maxLength={11}
                         disabled={isLoading}
-                        onChange={(evt) => {
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
                             const newInputValue = [];
-                            // @ts-ignore
-                            for (let i = 0; i < evt.target.value.length; i++) {
-                                // @ts-ignore
-                                if (evt.target.value[i]) {
+                            for (let i = 0; i < event.currentTarget.value.length; i++) {
+                                if (event.currentTarget.value[i]) {
                                     newInputValue.push({
-                                        // @ts-ignore
-                                        letter: evt.target.value[i], type: ElementStates.Default
+                                        letter: event.currentTarget.value[i],
+                                        type: ElementStates.Default
                                     });
                                 }
                             }

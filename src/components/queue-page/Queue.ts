@@ -61,6 +61,7 @@ export default class Queue implements IQueue {
         if (this.isEmpty()) {
             throw Error("Queue is empty")
         }
+
         const deletedItem = this.queue[this.head] as IValue;
         this.queue[this.head] = {
             ...deletedItem,
@@ -78,6 +79,22 @@ export default class Queue implements IQueue {
         };
         this.head = (this.head + 1) % this._maxN
         this._size--;
+        return {
+            queue: this.queue,
+            tail: this.tail,
+            head: this.head,
+        };
+    }
+
+    clearStack() {
+        this.queue = new Array<IValue>(this._maxN).fill({
+            value: "",
+            type: ElementStates.Default,
+        });
+        this.head = 0;
+        this.tail = 0;
+        this._size = 0;
+
         return {
             queue: this.queue,
             tail: this.tail,

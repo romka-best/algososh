@@ -49,7 +49,7 @@ export const SortingPage: React.FC = () => {
                 choiceSortAlgorithm(arrayOfNumbers, byTypeSort) :
                 bubbleSortAlgorithm(arrayOfNumbers, byTypeSort);
 
-            const interval = window.setInterval(() => {
+            const interval = setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
                 setArrayOfNumbers(() => {
@@ -61,7 +61,7 @@ export const SortingPage: React.FC = () => {
                 });
 
                 if (generatorValue.done) {
-                    window.clearInterval(interval);
+                    clearInterval(interval);
                     setIsLoading(false);
                 }
             }, DELAY_IN_MS);

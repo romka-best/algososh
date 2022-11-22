@@ -19,7 +19,7 @@ export const QueuePage: React.FC = () => {
     const [choiceAction, setChoiceAction] = React.useState<"Добавить" | "Удалить" | "Нет">("Нет");
     const [currentInputValue, setCurrentInputValue] = React.useState<string>("");
 
-    const [queueObject, setQueueObject] = React.useState(new Queue(7));
+    const [queueObject] = React.useState(new Queue(7));
     const [queue, setQueue] = React.useState<IQueue>({
         queue: queueObject.queue,
         tail: queueObject.tail,
@@ -37,13 +37,8 @@ export const QueuePage: React.FC = () => {
     }, []);
     const handleResetButton = React.useCallback((event: React.SyntheticEvent) => {
         event.preventDefault();
-        const newObject = new Queue(7);
-        setQueueObject(newObject);
-        setQueue({
-            queue: newObject.queue,
-            tail: newObject.tail,
-            head: newObject.head,
-        });
+
+        setQueue(queueObject.clearStack());
     }, []);
 
     React.useEffect(() => {
@@ -82,13 +77,13 @@ export const QueuePage: React.FC = () => {
                 <form className={styles.form} onSubmit={handleSubmitButton} onReset={handleResetButton}>
                     <Input
                         extraClass={styles.input}
+                        placeholder="Введите значение"
                         isLimitText={true}
                         maxLength={4}
                         disabled={isLoading}
                         value={currentInputValue}
-                        onChange={(event: React.SyntheticEvent) => {
-                            // @ts-ignore
-                            setCurrentInputValue(String(event.target.value));
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                            setCurrentInputValue(event.currentTarget.value);
                         }}
                     />
                     <Button

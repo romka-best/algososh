@@ -1,0 +1,35 @@
+.root {
+
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.input {
+    max-width: 204px;
+}
+
+.button_big {
+    grid-column: 2 / 4;
+}
+
+.button_big:first-of-type {
+    grid-column: 2 / 4;
+}
+
+.button_big:last-of-type {
+    grid-column: 4 / 6;
+}
+
+.circles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    margin-top: 90px;
+}

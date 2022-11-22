@@ -65,9 +65,8 @@ export const FibonacciPage: React.FC = () => {
                         max={19}
                         maxLength={2}
                         disabled={isLoading}
-                        onChange={(event: React.SyntheticEvent) => {
-                            // @ts-ignore
-                            setNumber(event.target.value);
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                            setNumber(Number(event.currentTarget.value));
                             setIsFinished(false);
                         }}
                     />
