@@ -22,7 +22,7 @@ import {DELAY_IN_MS} from "../../constants/delays";
 
 import {OperationTypes, Step} from "./list-page.types";
 
-import styles from './list-page.module.css';
+import styles from "./list-page.module.css";
 
 const DEFAULT_VALUE = ["0", "34", "8", "1"]
 
@@ -85,7 +85,7 @@ export const ListPage: React.FC = () => {
                 })
             }, DELAY_IN_MS);
         }
-    }, [currentOperation, currentInputValue]);
+    }, [currentOperation, currentInputValue, currentInputIndex]);
 
     return (
         <SolutionLayout title="Связный список">

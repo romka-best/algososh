@@ -86,7 +86,7 @@ export default class Queue implements IQueue {
         };
     }
 
-    clearStack() {
+    clear() {
         this.queue = new Array<IValue>(this._maxN).fill({
             value: "",
             type: ElementStates.Default,

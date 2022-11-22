@@ -11,7 +11,7 @@ import {ElementStates} from "../../types/element-states";
 import {Direction} from "../../types/direction";
 import {byTypeSort, choiceTypeSort, IValue} from "./sorting-page.types";
 
-import styles from './sorting-page.module.css';
+import styles from "./sorting-page.module.css";
 
 export const SortingPage: React.FC = () => {
     const [currentChoiceTypeSort, setCurrentChoiceTypeSort] = React.useState<choiceTypeSort>("Выбор");

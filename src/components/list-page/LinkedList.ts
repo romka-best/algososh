@@ -19,33 +19,27 @@ export default class LinkedList<T> {
         defaultValues?.forEach(value => this.append(value));
     }
 
-    append(value: T) {
+    append(value: T): void {
         const node = new LinkedListNode(value);
         if (!this.head || !this.tail) {
             this.head = node;
             this.tail = node;
-
-            return this;
         }
 
         this.tail.next = node;
         this.tail = node;
-
-        return this;
     }
 
-    prepend(value: T) {
+    prepend(value: T): void {
         const node = new LinkedListNode(value, this.head);
         this.head = node;
 
         if (!this.tail) {
             this.tail = node;
         }
-
-        return this;
     }
 
-    addByIndex(index: number, value: T) {
+    addByIndex(index: number, value: T): void {
         if (index < 0 || index > this.toArray().length) return;
 
         let current = this.head;
@@ -66,11 +60,9 @@ export default class LinkedList<T> {
                 previous.next = node;
             }
         }
-
-        return this;
     }
 
-    deleteByIndex(index: number) {
+    deleteByIndex(index: number): void {
         if (index > 0 && index > this.toArray().length) return;
 
         let current,
@@ -136,7 +128,7 @@ export default class LinkedList<T> {
         return deletedNode;
     }
 
-    toArray() {
+    toArray(): LinkedListNode<T>[] {
         const nodes = [];
         let currentNode = this.head;
 

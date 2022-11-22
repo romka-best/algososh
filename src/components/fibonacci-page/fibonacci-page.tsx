@@ -9,7 +9,7 @@ import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
 import {ElementStates} from "../../types/element-states";
 
-import styles from './fibonacci-page.module.css';
+import styles from "./fibonacci-page.module.css";
 
 export const FibonacciPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -31,7 +31,7 @@ export const FibonacciPage: React.FC = () => {
 
     React.useEffect(() => {
         if (isLoading) {
-            const generatorAlgorithm = fibonacciAlgorithm(number);
+            const generatorAlgorithm = getFibonacciNumbers(number);
             const interval = window.setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
@@ -100,7 +100,7 @@ export const FibonacciPage: React.FC = () => {
     );
 };
 
-function* fibonacciAlgorithm(number: number): Generator<Array<number>> {
+function* getFibonacciNumbers(number: number): Generator<Array<number>> {
     const numbers: Array<number> = [];
     for (let i = 0; i <= number; i++) {
         if (i < 2) {

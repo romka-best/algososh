@@ -3,66 +3,77 @@ import React from "react";
 import {SolutionLayout} from "../ui/solution-layout/solution-layout";
 import {Input} from "../ui/input/input";
 import {Button} from "../ui/button/button";
+import {Circle} from "../ui/circle/circle";
+
+import Stack from "./Stack";
+
+import {getLetterState, pop, push} from "./utils";
 
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
-import {ElementStates} from "../../types/element-states";
-import {IValue} from "./stack-page.types";
+import {OperationTypes, Step} from "./stack-page.types";
 
-import styles from './stack-page.module.css';
-import {Circle} from "../ui/circle/circle";
+import styles from "./stack-page.module.css";
 
 export const StackPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [choiceAction, setChoiceAction] = React.useState<"Добавить" | "Удалить" | "Нет">("Нет");
     const [currentInputValue, setCurrentInputValue] = React.useState<string>("");
-    const [stack, setStack] = React.useState<Array<IValue>>([]);
 
-    const handleSubmitButton = React.useCallback((event: React.SyntheticEvent) => {
-        event.preventDefault();
-
-        if (isLoading) {
-            return;
-        }
-
-        setIsLoading(true);
-    }, []);
-    const handleResetButton = React.useCallback((event: React.SyntheticEvent) => {
-        event.preventDefault();
-
-        setStack(clearStack());
-    }, [clearStack]);
+    const list = React.useRef<Stack<string>>(new Stack());
+    const intervalId = React.useRef<NodeJS.Timeout>();
+    const [steps, setSteps] = React.useState<Step<string>[]>([{list: list.current}]);
+    const [currentStep, setCurrentStep] = React.useState<number>(0);
+    const [currentOperation, setCurrentOperation] = React.useState<OperationTypes | null>(null);
 
     React.useEffect(() => {
-        if (isLoading) {
-            const generatorAlgorithm = choiceAction === "Добавить" ?
-                pushToStack(stack, {value: currentInputValue, type: ElementStates.Default}) :
-                popFromStack(stack);
-            setCurrentInputValue("");
+        if (!currentOperation) return;
 
-            const interval = setInterval(() => {
-                const generatorValue = generatorAlgorithm.next();
+        setIsLoading(true);
 
-                setStack(() => {
-                    const newState: Array<IValue> = [];
-                    for (let i = 0; i < generatorValue.value.length; i++) {
-                        newState.push(generatorValue.value[i])
+        let steps: Step<string>[] = [];
+
+        switch (currentOperation) {
+            case OperationTypes.Push:
+                steps = push(currentInputValue, list.current);
+                break
+            case OperationTypes.Pop:
+                steps = pop(list.current)
+                break
+            case OperationTypes.Clear:
+                list.current.clear();
+                setIsLoading(false);
+                break
+        }
+
+        if (steps.length > 1) {
+            setSteps(steps);
+            setCurrentStep(0);
+
+            intervalId.current = setInterval(() => {
+                setCurrentStep((currentStep) => {
+                    if (currentStep === steps.length - 1 && intervalId.current) {
+                        clearInterval(intervalId.current);
+                        setCurrentOperation(null);
+                        setIsLoading(false);
+                        setSteps([steps[steps.length - 1]]);
+                        setCurrentInputValue("");
+
+                        return 0;
                     }
-                    return newState;
-                });
-
-                if (generatorValue.done) {
-                    clearInterval(interval);
-                    setIsLoading(false);
-                }
+                    return currentStep + 1;
+                })
             }, SHORT_DELAY_IN_MS);
         }
-    }, [isLoading]);
+    }, [currentOperation, currentInputValue]);
 
     return (
         <SolutionLayout title="Стек">
             <div className={styles.root}>
-                <form className={styles.form} onSubmit={handleSubmitButton} onReset={handleResetButton}>
+                <form className={styles.form} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+                    event.preventDefault();
+                }} onReset={(event: React.FormEvent<HTMLFormElement>) => {
+                    event.preventDefault();
+                }}>
                     <Input
                         extraClass={styles.input}
                         placeholder="Введите значение"
@@ -76,41 +87,48 @@ export const StackPage: React.FC = () => {
                     />
                     <Button
                         text="Добавить"
-                        disabled={isLoading || stack.length > 20 || !currentInputValue.length}
-                        isLoader={isLoading && choiceAction === "Добавить"}
+                        disabled={isLoading || list.current.size() > 20 || !currentInputValue.length}
+                        isLoader={isLoading && currentOperation === OperationTypes.Push}
                         onClick={() => {
-                            setChoiceAction("Добавить");
+                            setCurrentOperation(OperationTypes.Push);
                         }}
                         type="submit"
                     />
                     <Button
                         text="Удалить"
-                        disabled={isLoading || !stack.length}
-                        isLoader={isLoading && choiceAction === "Удалить"}
+                        disabled={isLoading || !list.current.size()}
+                        isLoader={isLoading && currentOperation === OperationTypes.Pop}
                         onClick={() => {
-                            setChoiceAction("Удалить");
+                            setCurrentOperation(OperationTypes.Pop);
                         }}
                         type="submit"
                     />
                     <Button
                         extraClass={styles.resetButton}
                         text="Очистить"
-                        disabled={isLoading || !stack.length}
+                        disabled={isLoading || !list.current.size()}
+                        isLoader={isLoading && currentOperation === OperationTypes.Clear}
+                        onClick={() => {
+                            setCurrentOperation(OperationTypes.Clear)
+                        }}
                         type="reset"
                     />
                 </form>
-                {stack.length || isLoading ? (
+                {steps[currentStep].list.size() || isLoading ? (
                     <div className={styles.circles}>
                         {
-                            stack.map((value, index) => (
-                                    <Circle
-                                        key={index}
-                                        head={index === stack.length - 1 ? "top" : undefined}
-                                        tail={String(index)}
-                                        letter={value.value}
-                                        state={value.type}
-                                    />
-                                )
+                            steps[currentStep].list.storage.map((value, index) => {
+                                console.log(value)
+                                    return (
+                                        <Circle
+                                            key={index}
+                                            head={index === steps[currentStep].list.size() - 1 ? "top" : undefined}
+                                            tail={String(index)}
+                                            letter={value}
+                                            state={getLetterState(index, steps[currentStep], currentOperation)}
+                                        />
+                                    )
+                                }
                             )
                         }
                     </div>
@@ -119,32 +137,3 @@ export const StackPage: React.FC = () => {
         </SolutionLayout>
     );
 };
-
-function* pushToStack(stack: Array<IValue>, item: IValue): Generator<Array<IValue>> {
-    stack.push({
-        ...item,
-        type: ElementStates.Changing,
-    });
-    yield stack;
-
-    stack[stack.length - 1] = {
-        ...item,
-        type: ElementStates.Default
-    }
-    return stack;
-}
-
-function* popFromStack(stack: Array<IValue>): Generator<Array<IValue>> {
-    stack[stack.length - 1] = {
-        ...stack[stack.length - 1],
-        type: ElementStates.Changing,
-    }
-    yield stack;
-
-    stack.pop();
-    return stack;
-}
-
-function clearStack(): Array<IValue> {
-    return [];
-}

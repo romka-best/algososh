@@ -12,7 +12,7 @@ import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 import {ElementStates} from "../../types/element-states";
 import {IQueue} from "./queue-page.types";
 
-import styles from './queue-page.module.css';
+import styles from "./queue-page.module.css";
 
 export const QueuePage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -38,7 +38,7 @@ export const QueuePage: React.FC = () => {
     const handleResetButton = React.useCallback((event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        setQueue(queueObject.clearStack());
+        setQueue(queueObject.clear());
     }, []);
 
     React.useEffect(() => {

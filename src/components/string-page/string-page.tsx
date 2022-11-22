@@ -10,7 +10,7 @@ import {DELAY_IN_MS} from "../../constants/delays";
 import {ElementStates} from "../../types/element-states";
 import {IValue} from "./string-page.types";
 
-import styles from './string-page.module.css';
+import styles from "./string-page.module.css";
 
 export const StringPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
