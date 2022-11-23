@@ -16,7 +16,8 @@ export const StringPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isFinished, setIsFinished] = React.useState<boolean>(false);
 
-    const [inputValue, setInputValue] = React.useState<Array<IValue>>([]);
+    const [inputValue, setInputValue] = React.useState<string | undefined>();
+    const [newString, setNewString] = React.useState<Array<IValue>>([]);
 
     const handleButtonClick = React.useCallback((event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -26,28 +27,28 @@ export const StringPage: React.FC = () => {
         }
 
         const defaultValues: Array<IValue> = [];
-        for (let i = 0; i < inputValue.length; i++) {
+        for (let i = 0; i < newString.length; i++) {
             if (isFinished) {
                 defaultValues.push({
-                    letter: inputValue[inputValue.length - i - 1].letter, type: ElementStates.Default
+                    letter: newString[newString.length - i - 1].letter, type: ElementStates.Default
                 });
             } else {
                 defaultValues.push({
-                    letter: inputValue[i].letter, type: ElementStates.Default
+                    letter: newString[i].letter, type: ElementStates.Default
                 });
             }
         }
-        setInputValue(defaultValues);
+        setNewString(defaultValues);
         setIsLoading(true);
-    }, [inputValue, isLoading, isFinished]);
+    }, [newString, isLoading, isFinished]);
 
     React.useEffect(() => {
         if (isLoading) {
-            const generatorAlgorithm = reverseAlgorithm(inputValue);
+            const generatorAlgorithm = reverseAlgorithm(newString);
             const interval = setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
 
-                setInputValue(() => {
+                setNewString(() => {
                     const newState: Array<IValue> = [];
                     for (let i = 0; i < generatorValue.value.length; i++) {
                         newState.push(generatorValue.value[i])
@@ -73,6 +74,7 @@ export const StringPage: React.FC = () => {
                         isLimitText={true}
                         maxLength={11}
                         disabled={isLoading}
+                        value={inputValue}
                         onChange={(event: React.FormEvent<HTMLInputElement>) => {
                             const newInputValue = [];
                             for (let i = 0; i < event.currentTarget.value.length; i++) {
@@ -84,21 +86,22 @@ export const StringPage: React.FC = () => {
                                 }
                             }
                             setIsFinished(false);
-                            setInputValue(newInputValue);
+                            setInputValue(event.currentTarget.value)
+                            setNewString(newInputValue);
                         }}
                     />
                     <Button
                         extraClass={styles.button}
                         text="Развернуть"
-                        disabled={isLoading || !inputValue.length}
+                        disabled={isLoading || !newString.length}
                         isLoader={isLoading}
                         type="submit"
                     />
                 </form>
-                {inputValue.length && (isFinished || isLoading) ? (
+                {newString.length && (isFinished || isLoading) ? (
                     <div className={styles.circles}>
                         {
-                            inputValue.map((value, index) => (
+                            newString.map((value, index) => (
                                     <Circle
                                         key={index}
                                         letter={value.letter}

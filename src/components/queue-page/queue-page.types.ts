@@ -1,12 +1,20 @@
-import {ElementStates} from "../../types/element-states";
+import Queue from "./Queue";
 
-export interface IValue {
-    value: string;
-    type: ElementStates;
+export interface IQueue<T> {
+    enqueue(item: T): void;
+    dequeue(): T | undefined;
+    clear(): void;
+    size(): number;
 }
 
-export interface IQueue {
-    queue: Array<IValue>,
-    tail: number,
-    head: number,
+export enum OperationTypes {
+    Enqueue = "enqueue",
+    Dequeue = "dequeue",
+    Clear = "clear",
+}
+
+export interface Step<T> {
+    queue: Queue<T>;
+    index?: number,
+    value?: T | null,
 }

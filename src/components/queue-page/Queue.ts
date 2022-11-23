@@ -1,8 +1,7 @@
-import {IQueue, IValue} from "./queue-page.types";
-import {ElementStates} from "../../types/element-states";
+import {IQueue} from "./queue-page.types";
 
-export default class Queue implements IQueue {
-    queue: Array<IValue>;
+export default class Queue<T> implements IQueue<T> {
+    queue: Array<T | null>;
     head: number;
     tail: number;
 
@@ -10,10 +9,7 @@ export default class Queue implements IQueue {
     _size: number;
 
     constructor(n: number) {
-        this.queue = new Array<IValue>(n).fill({
-            value: "",
-            type: ElementStates.Default,
-        });
+        this.queue = new Array<T | null>(n).fill(null);
         this._maxN = n;
         this.head = 0;
         this.tail = 0;
@@ -28,77 +24,41 @@ export default class Queue implements IQueue {
         return this._size === this._maxN;
     }
 
-    * enqueue(newItem: IValue) {
+    enqueue(newItem: T) {
         if (this._size !== this._maxN) {
-            this.queue[this.tail] = {
-                ...newItem,
-                type: ElementStates.Changing,
-            };
-            const prevTail = this.tail;
+            this.queue[this.tail] = newItem;
             this.tail = (this.tail + 1) % this._maxN;
             this._size++;
-            yield {
-                queue: this.queue,
-                tail: this.tail,
-                head: this.head,
-            };
-
-            this.queue[prevTail] = {
-                ...newItem,
-                type: ElementStates.Default,
-            };
-            return {
-                queue: this.queue,
-                tail: this.tail,
-                head: this.head,
-            };
         } else {
             throw Error("Queue limit exceeded")
         }
     }
 
-    * dequeue() {
+    dequeue() {
         if (this.isEmpty()) {
-            throw Error("Queue is empty")
+            throw Error("Queue is empty");
         }
 
-        const deletedItem = this.queue[this.head] as IValue;
-        this.queue[this.head] = {
-            ...deletedItem,
-            type: ElementStates.Changing
+        const deletedItem = this.queue[this.head];
+        if (deletedItem === null) {
+            throw Error("Queue is empty");
         }
-        yield {
-            queue: this.queue,
-            tail: this.tail,
-            head: this.head,
-        };
 
-        this.queue[this.head] = {
-            value: "",
-            type: ElementStates.Default,
-        };
+        this.queue[this.head] = null;
         this.head = (this.head + 1) % this._maxN
         this._size--;
-        return {
-            queue: this.queue,
-            tail: this.tail,
-            head: this.head,
-        };
+
+        return deletedItem;
     }
 
     clear() {
-        this.queue = new Array<IValue>(this._maxN).fill({
-            value: "",
-            type: ElementStates.Default,
-        });
+        this.queue = new Array<T | null>(this._maxN).fill(null);
         this.head = 0;
         this.tail = 0;
         this._size = 0;
+    }
 
-        return {
-            queue: this.queue,
-            tail: this.tail,
-            head: this.head,
-        };
+    size() {
+        return this._size;
     }
 }

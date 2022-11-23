@@ -18,6 +18,7 @@ export function addHead<T>(value: T, list: LinkedList<T>): Step<T>[] {
         value,
         list: list.toArray(),
     });
+
     list.prepend(value);
 
     steps.push({
@@ -41,6 +42,7 @@ export function addTail<T>(value: T, list: LinkedList<T>): Step<T>[] {
         value,
         list: currentList,
     });
+
     list.append(value);
 
     currentList = list.toArray();
@@ -69,6 +71,7 @@ export function addByIndex<T>(value: T, index: number, list: LinkedList<T>): Ste
         });
         currentIndex++;
     }
+
     list.addByIndex(index, value);
 
     steps.push({
@@ -94,6 +97,7 @@ export function deleteHead<T>(list: LinkedList<T>): Step<T>[] {
         value,
         list: currentList,
     });
+
     list.deleteHead();
 
     steps.push({
@@ -119,6 +123,7 @@ export function deleteTail<T>(list: LinkedList<T>): Step<T>[] {
         value,
         list: currentList,
     });
+
     list.deleteTail();
 
     currentList = list.toArray();
@@ -137,6 +142,7 @@ export function deleteTail<T>(list: LinkedList<T>): Step<T>[] {
 
 export function deleteByIndex<T>(index: number, list: LinkedList<T>): Step<T>[] {
     const steps: Step<T>[] = [];
+
     let currentList = list.toArray();
 
     let currentIndex = 0;
@@ -148,12 +154,13 @@ export function deleteByIndex<T>(index: number, list: LinkedList<T>): Step<T>[] 
         currentIndex++;
     }
 
-    const value = currentList[currentIndex]._value;
-    // currentList[currentIndex]._value = null;
+    const prevList = new LinkedList(list.toInitialArray()).toArray();
+    const value = prevList[currentIndex]._value;
+    prevList[currentIndex]._value = null;
     steps.push({
         index: currentIndex,
         value,
-        list: currentList,
+        list: prevList,
     });
 
     list.deleteByIndex(index);
@@ -194,7 +201,6 @@ export function getLetterState<T>(
 
     return ElementStates.Default;
 }
-
 
 export function getLetterElementHead(step: Step<string>, index: number, operation: OperationTypes | null): string | React.ReactElement {
     if (operation &&

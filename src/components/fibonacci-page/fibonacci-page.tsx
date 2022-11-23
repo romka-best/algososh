@@ -15,7 +15,7 @@ export const FibonacciPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [isFinished, setIsFinished] = React.useState<boolean>(false);
 
-    const [number, setNumber] = React.useState<number>(0);
+    const [number, setNumber] = React.useState<number | undefined>();
     const [numbers, setNumbers] = React.useState<Array<number>>([]);
 
     const handleButtonClick = React.useCallback((event: React.SyntheticEvent) => {
@@ -30,7 +30,7 @@ export const FibonacciPage: React.FC = () => {
     }, [isLoading]);
 
     React.useEffect(() => {
-        if (isLoading) {
+        if (isLoading && number) {
             const generatorAlgorithm = getFibonacciNumbers(number);
             const interval = window.setInterval(() => {
                 const generatorValue = generatorAlgorithm.next();
@@ -65,6 +65,7 @@ export const FibonacciPage: React.FC = () => {
                         max={19}
                         maxLength={2}
                         disabled={isLoading}
+                        value={number}
                         onChange={(event: React.FormEvent<HTMLInputElement>) => {
                             setNumber(Number(event.currentTarget.value));
                             setIsFinished(false);

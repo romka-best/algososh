@@ -1,59 +1,60 @@
-import Stack from "./Stack";
+import Queue from "./Queue";
 
 import {ElementStates} from "../../types/element-states";
+import {Step, OperationTypes} from "./queue-page.types";
 
-import {Step} from "./stack-page.types";
-import {OperationTypes} from "./stack-page.types";
-
-export function push<T>(value: T, list: Stack<T>) {
+export function enqueue<T>(value: T, queue: Queue<T>): Step<T>[] {
     const steps: Step<T>[] = [];
 
     steps.push({
-        index: list.size(),
+        index: queue.tail,
         value,
-        list: list,
+        queue: queue,
     });
 
-    list.push(value);
+    queue.enqueue(value);
 
     steps.push({
-        list: list,
-    });
-
-    return steps;
-}
-
-export function pop<T>(list: Stack<T>) {
-    const steps: Step<T>[] = [];
-
-    const prevStack = new Stack<T>();
-    prevStack.storage = Array.from(list.storage);
-
-    steps.push({
-        index: prevStack.size() - 1,
-        list: prevStack,
-    });
-
-    list.pop();
-
-    steps.push({
-        list: list,
+        queue: queue,
     });
 
     return steps;
 }
 
-export function clear<T>(list: Stack<T>) {
+export function dequeue<T>(queue: Queue<T>): Step<T>[] {
+    const steps: Step<T>[] = [];
+
+    const prevQueue = new Queue<T>(queue._maxN);
+    prevQueue.head = queue.head;
+    prevQueue.tail = queue.tail;
+    prevQueue._size = queue.size();
+    prevQueue.queue = Array.from(queue.queue);
+
+    steps.push({
+        index: prevQueue.head,
+        queue: prevQueue,
+    });
+
+    queue.dequeue();
+
+    steps.push({
+        queue: queue,
+    });
+
+    return steps;
+}
+
+export function clear<T>(queue: Queue<T>) {
     const steps: Step<T>[] = [];
 
     steps.push({
-        list: list,
+        queue: queue,
     });
 
-    list.clear();
+    queue.clear();
 
     steps.push({
-        list: list,
+        queue: queue,
     });
 
     return steps;

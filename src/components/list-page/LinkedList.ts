@@ -139,4 +139,16 @@ export default class LinkedList<T> {
 
         return nodes;
     }
+
+    toInitialArray(): T[] {
+        const nodes: T[] = [];
+        let currentNode = this.head;
+
+        while (currentNode) {
+            nodes.push(currentNode._value as T);
+            currentNode = currentNode.next;
+        }
+
+        return nodes;
+    }
 }

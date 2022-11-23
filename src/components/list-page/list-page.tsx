@@ -6,6 +6,8 @@ import {Button} from "../ui/button/button";
 import {Circle} from "../ui/circle/circle";
 import {ArrowIcon} from "../ui/icons/arrow-icon";
 
+import {useForm} from "../../hooks/useForm";
+
 import LinkedList from "./LinkedList";
 
 import {
@@ -28,8 +30,13 @@ const DEFAULT_VALUE = ["0", "34", "8", "1"]
 
 export const ListPage: React.FC = () => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [currentInputValue, setCurrentInputValue] = React.useState<string>("");
-    const [currentInputIndex, setCurrentInputIndex] = React.useState<string>("");
+    // const [currentInputValue, setCurrentInputValue] = React.useState<string>("");
+    // const [currentInputIndex, setCurrentInputIndex] = React.useState<string>("");
+
+    const {values, handleChange, setValues} = useForm({
+        value: '',
+        index: '',
+    });
 
     const list = React.useRef(new LinkedList(DEFAULT_VALUE));
     const intervalId = React.useRef<NodeJS.Timeout>();
@@ -46,13 +53,13 @@ export const ListPage: React.FC = () => {
 
         switch (currentOperation) {
             case OperationTypes.AddHead:
-                steps = addHead<string>(currentInputValue, list.current);
+                steps = addHead<string>(values.value, list.current);
                 break;
             case OperationTypes.AddTail:
-                steps = addTail<string>(currentInputValue, list.current);
+                steps = addTail<string>(values.value, list.current);
                 break;
             case OperationTypes.AddByIndex:
-                steps = addByIndex<string>(currentInputValue, Number(currentInputIndex), list.current);
+                steps = addByIndex<string>(values.value, Number(values.index), list.current);
                 break;
             case OperationTypes.DeleteHead:
                 steps = deleteHead<string>(list.current);
@@ -61,7 +68,7 @@ export const ListPage: React.FC = () => {
                 steps = deleteTail<string>(list.current);
                 break;
             case OperationTypes.DeleteByIndex:
-                steps = deleteByIndex<string>(Number(currentInputIndex), list.current);
+                steps = deleteByIndex<string>(Number(values.index), list.current);
                 break;
         }
 
@@ -76,8 +83,10 @@ export const ListPage: React.FC = () => {
                         setCurrentOperation(null);
                         setIsLoading(false);
                         setSteps([steps[steps.length - 1]]);
-                        setCurrentInputValue("");
-                        setCurrentInputIndex("");
+                        setValues({
+                            value: '',
+                            index: '',
+                        })
 
                         return 0;
                     }
@@ -85,7 +94,7 @@ export const ListPage: React.FC = () => {
                 })
             }, DELAY_IN_MS);
         }
-    }, [currentOperation, currentInputValue, currentInputIndex]);
+    }, [currentOperation, values]);
 
     return (
         <SolutionLayout title="Связный список">
@@ -96,17 +105,16 @@ export const ListPage: React.FC = () => {
                     <Input
                         extraClass={styles.input}
                         placeholder="Введите значение"
+                        name="value"
                         isLimitText={true}
                         maxLength={4}
                         disabled={isLoading}
-                        value={currentInputValue}
-                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
-                            setCurrentInputValue(event.currentTarget.value);
-                        }}
+                        value={values.value}
+                        onChange={handleChange}
                     />
                     <Button
                         text="Добавить в head"
-                        disabled={isLoading || !currentInputValue.length}
+                        disabled={isLoading || !values.value.length}
                         isLoader={isLoading && currentOperation === OperationTypes.AddHead}
                         onClick={() => {
                             setCurrentOperation(OperationTypes.AddHead);
@@ -115,7 +123,7 @@ export const ListPage: React.FC = () => {
                     />
                     <Button
                         text="Добавить в tail"
-                        disabled={isLoading || !currentInputValue.length}
+                        disabled={isLoading || !values.value.length}
                         isLoader={isLoading && currentOperation === OperationTypes.AddTail}
                         onClick={() => {
                             setCurrentOperation(OperationTypes.AddTail);
@@ -143,21 +151,21 @@ export const ListPage: React.FC = () => {
                     <Input
                         extraClass={styles.input}
                         placeholder="Введите индекс"
+                        name="index"
+                        type="number"
                         disabled={isLoading}
-                        value={currentInputIndex}
-                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
-                            setCurrentInputIndex(event.currentTarget.value);
-                        }}
+                        value={values.index}
+                        onChange={handleChange}
                     />
                     <Button
                         extraClass={styles.button_big}
                         text="Добавить по индексу"
                         disabled={isLoading ||
-                            !currentInputIndex.length ||
-                            !currentInputValue.length ||
-                            Number.isNaN(Number(currentInputIndex)) ||
-                            Number(currentInputIndex) < 0 ||
-                            Number(currentInputIndex) >= steps[currentStep].list.length
+                            !values.index.length ||
+                            !values.value.length ||
+                            Number.isNaN(Number(values.index)) ||
+                            Number(values.index) < 0 ||
+                            Number(values.index) >= steps[currentStep].list.length
                         }
                         isLoader={isLoading && currentOperation === OperationTypes.AddByIndex}
                         onClick={() => {
@@ -169,11 +177,11 @@ export const ListPage: React.FC = () => {
                         extraClass={styles.button_big}
                         text="Удалить по индексу"
                         disabled={isLoading ||
-                            !currentInputIndex.length ||
+                            !values.index.length ||
                             !steps[currentStep].list.length ||
-                            Number.isNaN(Number(currentInputIndex)) ||
-                            Number(currentInputIndex) < 0 ||
-                            Number(currentInputIndex) >= steps[currentStep].list.length
+                            Number.isNaN(Number(values.index)) ||
+                            Number(values.index) < 0 ||
+                            Number(values.index) >= steps[currentStep].list.length
                         }
                         isLoader={isLoading && currentOperation === OperationTypes.DeleteByIndex}
                         onClick={() => {

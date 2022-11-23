@@ -7,7 +7,7 @@ import {Circle} from "../ui/circle/circle";
 
 import Stack from "./Stack";
 
-import {getLetterState, pop, push} from "./utils";
+import {clear, getLetterState, pop, push} from "./utils";
 
 import {SHORT_DELAY_IN_MS} from "../../constants/delays";
 
@@ -37,11 +37,10 @@ export const StackPage: React.FC = () => {
                 steps = push(currentInputValue, list.current);
                 break
             case OperationTypes.Pop:
-                steps = pop(list.current)
+                steps = pop(list.current);
                 break
             case OperationTypes.Clear:
-                list.current.clear();
-                setIsLoading(false);
+                steps = clear(list.current);
                 break
         }
 
@@ -117,18 +116,15 @@ export const StackPage: React.FC = () => {
                 {steps[currentStep].list.size() || isLoading ? (
                     <div className={styles.circles}>
                         {
-                            steps[currentStep].list.storage.map((value, index) => {
-                                console.log(value)
-                                    return (
-                                        <Circle
-                                            key={index}
-                                            head={index === steps[currentStep].list.size() - 1 ? "top" : undefined}
-                                            tail={String(index)}
-                                            letter={value}
-                                            state={getLetterState(index, steps[currentStep], currentOperation)}
-                                        />
-                                    )
-                                }
+                            steps[currentStep].list.storage.map((value, index) => (
+                                    <Circle
+                                        key={index}
+                                        head={index === steps[currentStep].list.size() - 1 ? "top" : undefined}
+                                        tail={String(index)}
+                                        letter={value}
+                                        state={getLetterState(index, steps[currentStep], currentOperation)}
+                                    />
+                                )
                             )
                         }
                     </div>
