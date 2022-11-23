@@ -1,0 +1,22 @@
+.root {
+
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.input {
+    max-width: 378px;
+}
+
+.circles {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    margin-top: 120px;
+}
