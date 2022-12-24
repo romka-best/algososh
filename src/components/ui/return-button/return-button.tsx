@@ -1,24 +1,31 @@
-import React from "react";
-import styles from "./return-button.module.css";
-import { ReturnIcon } from "../icons/return-icon";
+import React from 'react';
+import cn from 'classnames';
+
+import { ReturnIcon } from '../icons/return-icon';
+
+import styles from './return-button.module.css';
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-  type?: "button" | "submit" | "reset";
-  extraClass?: string;
+    type?: 'button' | 'submit' | 'reset';
+    extraClass?: string;
 }
 
-export const ReturnButton: React.FC<ButtonProps> = ({
-  extraClass = "",
-  ...rest
-}) => {
-  return (
-    <button
-      className={`${styles.button} ${extraClass}`}
-      type="button"
-      {...rest}
-    >
-      <ReturnIcon />
-      <p className="text text_type_button text_color_link ml-4">К оглавлению</p>
-    </button>
-  );
+export const ReturnButton: React.FC<ButtonProps> = (
+    {
+        extraClass = '',
+        ...rest
+    }
+) => {
+    return (
+        <button
+            className={ cn(styles.button, extraClass) }
+            type="button"
+            { ...rest }
+        >
+            <ReturnIcon/>
+            <p className={ cn('text', 'text_type_button', 'text_color_link', 'ml-4') }>
+                К оглавлению
+            </p>
+        </button>
+    );
 };

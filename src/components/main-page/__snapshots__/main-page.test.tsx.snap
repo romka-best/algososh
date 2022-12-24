@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainPage Отображение Начальное состяние 1`] = `
+<main
+  className="root"
+>
+  <div
+    className="title_box"
+  >
+    <h1
+      className="text text_type_h1 text_color_h1 title"
+    >
+      МБОУ АЛГОСОШ
+    </h1>
+    <p
+      className="text text_type_fibonacci text_color_secondary fibonacci_title"
+    >
+      им. Фибоначчи
+    </p>
+  </div>
+  <div
+    className="cards_box"
+  >
+    <a
+      className="link"
+      href="/recursion"
+      onClick={[Function]}
+    >
+      <div
+        className="card string"
+      />
+    </a>
+    <a
+      className="link"
+      href="/fibonacci"
+      onClick={[Function]}
+    >
+      <div
+        className="card fibonacci"
+      />
+    </a>
+    <a
+      className="link"
+      href="/sorting"
+      onClick={[Function]}
+    >
+      <div
+        className="card arr"
+      />
+    </a>
+    <a
+      className="link"
+      href="/stack"
+      onClick={[Function]}
+    >
+      <div
+        className="card stack"
+      />
+    </a>
+    <a
+      className="link"
+      href="/queue"
+      onClick={[Function]}
+    >
+      <div
+        className="card queue"
+      />
+    </a>
+    <a
+      className="link"
+      href="/list"
+      onClick={[Function]}
+    >
+      <div
+        className="card list"
+      />
+    </a>
+  </div>
+  <p
+    className="text text_type_column text_color_input mt-14 copyright"
+  >
+    © Сделано в Практикуме Романом Даниловым.
+  </p>
+</main>
+`;

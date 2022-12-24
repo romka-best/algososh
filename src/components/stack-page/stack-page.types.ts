@@ -1,4 +1,4 @@
-import Stack from "./Stack";
+import Stack from './Stack';
 
 export interface IStack<T> {
     push(item: T): void;
@@ -8,9 +8,9 @@ export interface IStack<T> {
 }
 
 export enum OperationTypes {
-    Push = "push",
-    Pop = "pop",
-    Clear = "clear",
+    Push = 'push',
+    Pop = 'pop',
+    Clear = 'clear',
 }
 
 export interface Step<T> {

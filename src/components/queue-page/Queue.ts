@@ -1,4 +1,4 @@
-import {IQueue} from "./queue-page.types";
+import { IQueue } from './queue-page.types';
 
 export default class Queue<T> implements IQueue<T> {
     queue: Array<T | null>;
@@ -30,22 +30,22 @@ export default class Queue<T> implements IQueue<T> {
             this.tail = (this.tail + 1) % this._maxN;
             this._size++;
         } else {
-            throw Error("Queue limit exceeded")
+            throw Error('Queue limit exceeded');
         }
     }
 
     dequeue() {
         if (this.isEmpty()) {
-            throw Error("Queue is empty");
+            throw Error('Queue is empty');
         }
 
         const deletedItem = this.queue[this.head];
         if (deletedItem === null) {
-            throw Error("Queue is empty");
+            throw Error('Queue is empty');
         }
 
         this.queue[this.head] = null;
-        this.head = (this.head + 1) % this._maxN
+        this.head = (this.head + 1) % this._maxN;
         this._size--;
 
         return deletedItem;

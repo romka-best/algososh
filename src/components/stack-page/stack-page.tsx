@@ -1,29 +1,28 @@
-import React from "react";
+import React from 'react';
 
-import {SolutionLayout} from "../ui/solution-layout/solution-layout";
-import {Input} from "../ui/input/input";
-import {Button} from "../ui/button/button";
-import {Circle} from "../ui/circle/circle";
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
-import Stack from "./Stack";
+import { SolutionLayout } from '../ui/solution-layout/solution-layout';
+import { Input } from '../ui/input/input';
+import { Button } from '../ui/button/button';
+import { Circle } from '../ui/circle/circle';
 
-import {clear, getLetterState, pop, push} from "./utils";
+import Stack from './Stack';
+import { clear, getLetterState, pop, push } from './utils';
+import { OperationTypes, Step } from './stack-page.types';
+import styles from './stack-page.module.css';
 
-import {SHORT_DELAY_IN_MS} from "../../constants/delays";
-
-import {OperationTypes, Step} from "./stack-page.types";
-
-import styles from "./stack-page.module.css";
+const MAX_LENGTH_VALUE: number = 4;
 
 export const StackPage: React.FC = () => {
-    const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [currentInputValue, setCurrentInputValue] = React.useState<string>("");
+    const [ isLoading, setIsLoading ] = React.useState<boolean>(false);
+    const [ currentInputValue, setCurrentInputValue ] = React.useState<string>('');
 
     const list = React.useRef<Stack<string>>(new Stack());
     const intervalId = React.useRef<NodeJS.Timeout>();
-    const [steps, setSteps] = React.useState<Step<string>[]>([{list: list.current}]);
-    const [currentStep, setCurrentStep] = React.useState<number>(0);
-    const [currentOperation, setCurrentOperation] = React.useState<OperationTypes | null>(null);
+    const [ steps, setSteps ] = React.useState<Step<string>[]>([ { list: list.current } ]);
+    const [ currentStep, setCurrentStep ] = React.useState<number>(0);
+    const [ currentOperation, setCurrentOperation ] = React.useState<OperationTypes | null>(null);
 
     React.useEffect(() => {
         if (!currentOperation) return;
@@ -35,13 +34,13 @@ export const StackPage: React.FC = () => {
         switch (currentOperation) {
             case OperationTypes.Push:
                 steps = push(currentInputValue, list.current);
-                break
+                break;
             case OperationTypes.Pop:
                 steps = pop(list.current);
-                break
+                break;
             case OperationTypes.Clear:
                 steps = clear(list.current);
-                break
+                break;
         }
 
         if (steps.length > 1) {
@@ -54,81 +53,85 @@ export const StackPage: React.FC = () => {
                         clearInterval(intervalId.current);
                         setCurrentOperation(null);
                         setIsLoading(false);
-                        setSteps([steps[steps.length - 1]]);
-                        setCurrentInputValue("");
+                        setSteps([ steps[steps.length - 1] ]);
+                        setCurrentInputValue('');
 
                         return 0;
                     }
                     return currentStep + 1;
-                })
+                });
             }, SHORT_DELAY_IN_MS);
         }
-    }, [currentOperation, currentInputValue]);
+    }, [ currentOperation, currentInputValue ]);
 
     return (
         <SolutionLayout title="Стек">
-            <div className={styles.root}>
-                <form className={styles.form} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+            <div className={ styles.root }>
+                <form className={ styles.form } onSubmit={ (event: React.FormEvent<HTMLFormElement>) => {
                     event.preventDefault();
-                }} onReset={(event: React.FormEvent<HTMLFormElement>) => {
+                } } onReset={ (event: React.FormEvent<HTMLFormElement>) => {
                     event.preventDefault();
-                }}>
+                } }>
                     <Input
-                        extraClass={styles.input}
+                        extraClass={ styles.input }
                         placeholder="Введите значение"
-                        isLimitText={true}
-                        maxLength={4}
-                        disabled={isLoading}
-                        value={currentInputValue}
-                        onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                        isLimitText={ true }
+                        maxLength={ MAX_LENGTH_VALUE }
+                        disabled={ isLoading }
+                        value={ currentInputValue }
+                        onChange={ (event: React.FormEvent<HTMLInputElement>) => {
+                            if (event.currentTarget.value.length > MAX_LENGTH_VALUE) {
+                                return
+                            }
+
                             setCurrentInputValue(String(event.currentTarget.value));
-                        }}
+                        } }
                     />
                     <Button
                         text="Добавить"
-                        disabled={isLoading || list.current.size() > 20 || !currentInputValue.length}
-                        isLoader={isLoading && currentOperation === OperationTypes.Push}
-                        onClick={() => {
+                        disabled={ isLoading || list.current.size() > 20 || !currentInputValue.length }
+                        isLoader={ isLoading && currentOperation === OperationTypes.Push }
+                        onClick={ () => {
                             setCurrentOperation(OperationTypes.Push);
-                        }}
+                        } }
                         type="submit"
                     />
                     <Button
                         text="Удалить"
-                        disabled={isLoading || !list.current.size()}
-                        isLoader={isLoading && currentOperation === OperationTypes.Pop}
-                        onClick={() => {
+                        disabled={ isLoading || !list.current.size() }
+                        isLoader={ isLoading && currentOperation === OperationTypes.Pop }
+                        onClick={ () => {
                             setCurrentOperation(OperationTypes.Pop);
-                        }}
+                        } }
                         type="submit"
                     />
                     <Button
-                        extraClass={styles.resetButton}
+                        extraClass={ styles.resetButton }
                         text="Очистить"
-                        disabled={isLoading || !list.current.size()}
-                        isLoader={isLoading && currentOperation === OperationTypes.Clear}
-                        onClick={() => {
-                            setCurrentOperation(OperationTypes.Clear)
-                        }}
+                        disabled={ isLoading || !list.current.size() }
+                        isLoader={ isLoading && currentOperation === OperationTypes.Clear }
+                        onClick={ () => {
+                            setCurrentOperation(OperationTypes.Clear);
+                        } }
                         type="reset"
                     />
                 </form>
-                {steps[currentStep].list.size() || isLoading ? (
-                    <div className={styles.circles}>
+                { steps[currentStep].list.size() || isLoading ? (
+                    <div className={ styles.circles }>
                         {
                             steps[currentStep].list.storage.map((value, index) => (
                                     <Circle
-                                        key={index}
-                                        head={index === steps[currentStep].list.size() - 1 ? "top" : undefined}
-                                        tail={String(index)}
-                                        letter={value}
-                                        state={getLetterState(index, steps[currentStep], currentOperation)}
+                                        key={ index }
+                                        head={ index === steps[currentStep].list.size() - 1 ? 'top' : undefined }
+                                        index={ index }
+                                        letter={ value }
+                                        state={ getLetterState(index, steps[currentStep], currentOperation) }
                                     />
                                 )
                             )
                         }
                     </div>
-                ) : null}
+                ) : null }
             </div>
         </SolutionLayout>
     );

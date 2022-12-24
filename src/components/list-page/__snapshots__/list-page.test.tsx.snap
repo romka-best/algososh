@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListPage Отображение Начальное состяние 1`] = `
+<main
+  className="content"
+>
+  <div
+    className="titleBox"
+  >
+    <h1
+      className="text text_type_h2 text_color_h1 title"
+    >
+      МБОУ АЛГОСОШ
+    </h1>
+    <span
+      className="text text_type_fibonacci text_color_secondary subtitle"
+    >
+      им. Фибоначчи
+    </span>
+  </div>
+  <div
+    className="contentCard"
+  >
+    <a
+      className="link"
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button returnButton"
+        type="button"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M12.7073 4.29289C13.0978 4.68342 13.0978 5.31658 12.7073 5.70711L7.41436 11H19.0002C19.5524 11 20.0002 11.4477 20.0002 12C20.0002 12.5523 19.5524 13 19.0002 13H7.41436L12.7073 18.2929C13.0978 18.6834 13.0978 19.3166 12.7073 19.7071C12.3167 20.0976 11.6836 20.0976 11.293 19.7071L3.58594 12L11.293 4.29289C11.6836 3.90237 12.3167 3.90237 12.7073 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <p
+          className="text text_type_button text_color_link ml-4"
+        >
+          К оглавлению
+        </p>
+      </button>
+    </a>
+    <h3
+      className="text text_type_h3 text_color_h3 cardTitle"
+    >
+      Связный список
+    </h3>
+    <div
+      className="root"
+    >
+      <form
+        className="form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="content input"
+        >
+          <input
+            className="input text text_type_input text_color_input"
+            disabled={false}
+            maxLength={4}
+            name="value"
+            onChange={[Function]}
+            placeholder="Введите значение"
+            type="text"
+            value=""
+          />
+          <span
+            className="text text_type_input-lim text_color_input mt-2 ml-8 limit"
+          >
+            Максимум — 4 символа
+          </span>
+        </div>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Добавить в head
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Добавить в tail
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Удалить из head
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Удалить из tail
+          </p>
+        </button>
+        <div
+          className="content input"
+        >
+          <input
+            className="input text text_type_input text_color_input"
+            disabled={false}
+            name="index"
+            onChange={[Function]}
+            placeholder="Введите индекс"
+            type="number"
+            value=""
+          />
+        </div>
+        <button
+          className="text text_type_button text_color_primary button button_big"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Добавить по индексу
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button button_big"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Удалить по индексу
+          </p>
+        </button>
+      </form>
+      <div
+        className="circles"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head string"
+          >
+            head
+          </div>
+          <div
+            className="circle default"
+          >
+            <p
+              className="text text_type_circle text_color_input letter"
+            >
+              0
+            </p>
+          </div>
+          <p
+            className="text text_type_input text_color_input mt-4 absolute index"
+          >
+            0
+          </p>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail60 string"
+          >
+            
+          </div>
+        </div>
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M9.29289 4.29289C9.68342 3.90237 10.3166 3.90237 10.7071 4.29289L18.4142 12L10.7071 19.7071C10.3166 20.0976 9.68342 20.0976 9.29289 19.7071C8.90237 19.3166 8.90237 18.6834 9.29289 18.2929L15.5858 12L9.29289 5.70711C8.90237 5.31658 8.90237 4.68342 9.29289 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head string"
+          >
+            
+          </div>
+          <div
+            className="circle default"
+          >
+            <p
+              className="text text_type_circle text_color_input letter"
+            >
+              34
+            </p>
+          </div>
+          <p
+            className="text text_type_input text_color_input mt-4 absolute index"
+          >
+            1
+          </p>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail60 string"
+          >
+            
+          </div>
+        </div>
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M9.29289 4.29289C9.68342 3.90237 10.3166 3.90237 10.7071 4.29289L18.4142 12L10.7071 19.7071C10.3166 20.0976 9.68342 20.0976 9.29289 19.7071C8.90237 19.3166 8.90237 18.6834 9.29289 18.2929L15.5858 12L9.29289 5.70711C8.90237 5.31658 8.90237 4.68342 9.29289 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head string"
+          >
+            
+          </div>
+          <div
+            className="circle default"
+          >
+            <p
+              className="text text_type_circle text_color_input letter"
+            >
+              8
+            </p>
+          </div>
+          <p
+            className="text text_type_input text_color_input mt-4 absolute index"
+          >
+            2
+          </p>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail60 string"
+          >
+            
+          </div>
+        </div>
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M9.29289 4.29289C9.68342 3.90237 10.3166 3.90237 10.7071 4.29289L18.4142 12L10.7071 19.7071C10.3166 20.0976 9.68342 20.0976 9.29289 19.7071C8.90237 19.3166 8.90237 18.6834 9.29289 18.2929L15.5858 12L9.29289 5.70711C8.90237 5.31658 8.90237 4.68342 9.29289 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head string"
+          >
+            
+          </div>
+          <div
+            className="circle default"
+          >
+            <p
+              className="text text_type_circle text_color_input letter"
+            >
+              1
+            </p>
+          </div>
+          <p
+            className="text text_type_input text_color_input mt-4 absolute index"
+          >
+            3
+          </p>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail60 string"
+          >
+            tail
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p
+    className="text text_type_column text_color_input mt-14 copyright"
+  >
+    © Сделано в Практикуме Романом Даниловым.
+  </p>
+</main>
+`;

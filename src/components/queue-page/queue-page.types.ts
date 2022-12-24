@@ -1,4 +1,4 @@
-import Queue from "./Queue";
+import Queue from './Queue';
 
 export interface IQueue<T> {
     enqueue(item: T): void;
@@ -8,9 +8,9 @@ export interface IQueue<T> {
 }
 
 export enum OperationTypes {
-    Enqueue = "enqueue",
-    Dequeue = "dequeue",
-    Clear = "clear",
+    Enqueue = 'enqueue',
+    Dequeue = 'dequeue',
+    Clear = 'clear',
 }
 
 export interface Step<T> {

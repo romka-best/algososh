@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QueuePage Отображение Начальное состяние 1`] = `
+<main
+  className="content"
+>
+  <div
+    className="titleBox"
+  >
+    <h1
+      className="text text_type_h2 text_color_h1 title"
+    >
+      МБОУ АЛГОСОШ
+    </h1>
+    <span
+      className="text text_type_fibonacci text_color_secondary subtitle"
+    >
+      им. Фибоначчи
+    </span>
+  </div>
+  <div
+    className="contentCard"
+  >
+    <a
+      className="link"
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button returnButton"
+        type="button"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M12.7073 4.29289C13.0978 4.68342 13.0978 5.31658 12.7073 5.70711L7.41436 11H19.0002C19.5524 11 20.0002 11.4477 20.0002 12C20.0002 12.5523 19.5524 13 19.0002 13H7.41436L12.7073 18.2929C13.0978 18.6834 13.0978 19.3166 12.7073 19.7071C12.3167 20.0976 11.6836 20.0976 11.293 19.7071L3.58594 12L11.293 4.29289C11.6836 3.90237 12.3167 3.90237 12.7073 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <p
+          className="text text_type_button text_color_link ml-4"
+        >
+          К оглавлению
+        </p>
+      </button>
+    </a>
+    <h3
+      className="text text_type_h3 text_color_h3 cardTitle"
+    >
+      Очередь
+    </h3>
+    <div
+      className="root"
+    >
+      <form
+        className="form"
+        onReset={[Function]}
+        onSubmit={[Function]}
+      >
+        <div
+          className="content input"
+        >
+          <input
+            className="input text text_type_input text_color_input"
+            disabled={false}
+            maxLength={4}
+            onChange={[Function]}
+            placeholder="Введите значение"
+            type="text"
+            value=""
+          />
+          <span
+            className="text text_type_input-lim text_color_input mt-2 ml-8 limit"
+          >
+            Максимум — 4 символа
+          </span>
+        </div>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Добавить
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button"
+          disabled={true}
+          onClick={[Function]}
+          type="submit"
+        >
+          <p
+            className="text"
+          >
+            Удалить
+          </p>
+        </button>
+        <button
+          className="text text_type_button text_color_primary button resetButton"
+          disabled={true}
+          onClick={[Function]}
+          type="reset"
+        >
+          <p
+            className="text"
+          >
+            Очистить
+          </p>
+        </button>
+      </form>
+      <div
+        className="circles"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+        <div
+          className="content"
+        >
+          <div
+            className="text text_type_input text_color_input mb-4 absolute head element"
+          />
+          <div
+            className="circle default"
+          >
+            
+          </div>
+          <div
+            className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <p
+    className="text text_type_column text_color_input mt-14 copyright"
+  >
+    © Сделано в Практикуме Романом Даниловым.
+  </p>
+</main>
+`;
