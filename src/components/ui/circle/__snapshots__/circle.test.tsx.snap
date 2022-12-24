@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Circle Отображение Без буквы 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение Разные размеры Дефолтный 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение Разные размеры Маленький 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle small default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение Разные состояния Changing 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle changing"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение Разные состояния Default 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение Разные состояния Modified 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle modified"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение С head React-элемент 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  >
+    <div>
+      Здесь будет голова!
+    </div>
+  </div>
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение С head Строка 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head string"
+  >
+    top
+  </div>
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение С index 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  >
+    0
+  </p>
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail60 element"
+  />
+</div>
+`;
+
+exports[`Circle Отображение С tail React-элемент 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  >
+    <div>
+      Здесь будет хвост!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Circle Отображение С tail Строка 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 string"
+  >
+    bottom
+  </div>
+</div>
+`;
+
+exports[`Circle Отображение С буквой 1`] = `
+<div
+  className="content"
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    >
+      F
+    </p>
+  </div>
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail tail30 element"
+  />
+</div>
+`;

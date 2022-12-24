@@ -1,7 +1,7 @@
-import Queue from "./Queue";
+import Queue from './Queue';
 
-import {ElementStates} from "../../types/element-states";
-import {Step, OperationTypes} from "./queue-page.types";
+import { ElementStates } from '../../types/element-states';
+import { Step, OperationTypes } from './queue-page.types';
 
 export function enqueue<T>(value: T, queue: Queue<T>): Step<T>[] {
     const steps: Step<T>[] = [];
@@ -9,13 +9,13 @@ export function enqueue<T>(value: T, queue: Queue<T>): Step<T>[] {
     steps.push({
         index: queue.tail,
         value,
-        queue: queue,
+        queue,
     });
 
     queue.enqueue(value);
 
     steps.push({
-        queue: queue,
+        queue,
     });
 
     return steps;
@@ -38,7 +38,7 @@ export function dequeue<T>(queue: Queue<T>): Step<T>[] {
     queue.dequeue();
 
     steps.push({
-        queue: queue,
+        queue,
     });
 
     return steps;
@@ -48,13 +48,13 @@ export function clear<T>(queue: Queue<T>) {
     const steps: Step<T>[] = [];
 
     steps.push({
-        queue: queue,
+        queue,
     });
 
     queue.clear();
 
     steps.push({
-        queue: queue,
+        queue,
     });
 
     return steps;

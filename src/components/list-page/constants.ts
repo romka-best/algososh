@@ -1,4 +1,4 @@
-import {OperationTypes} from "./list-page.types";
+import { OperationTypes } from './list-page.types';
 
 export const ADD_OPERATION_TYPE = [
     OperationTypes.AddByIndex,

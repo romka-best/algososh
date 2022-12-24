@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import {Circle} from "../ui/circle/circle";
+import { Circle } from '../ui/circle/circle';
 
-import LinkedList from "./LinkedList";
+import LinkedList from './LinkedList';
 
-import {HEAD, TAIL} from "../../constants/element-captions";
-import {ADD_OPERATION_TYPE, DELETE_OPERATION_TYPE} from "./constants";
+import { HEAD, TAIL } from '../../constants/element-captions';
+import { ADD_OPERATION_TYPE, DELETE_OPERATION_TYPE } from './constants';
 
-import {ElementStates} from "../../types/element-states";
-import {OperationTypes, Step} from "./list-page.types";
+import { ElementStates } from '../../types/element-states';
+import { OperationTypes, Step } from './list-page.types';
 
 export function addHead<T>(value: T, list: LinkedList<T>): Step<T>[] {
     const steps: Step<T>[] = [];
@@ -188,9 +188,9 @@ export function getLetterState<T>(
         return ElementStates.Default;
     }
 
-    if ((currentStep.value && ((operationType === "addHead" || operationType === "addByIndex") &&
-            index < currentStep.index) || (operationType === "addTail" && index > currentStep.index)) ||
-        (operationType === "deleteByIndex" && index <= currentStep.index)
+    if ((currentStep.value && ((operationType === 'addHead' || operationType === 'addByIndex') &&
+            index < currentStep.index) || (operationType === 'addTail' && index > currentStep.index)) ||
+        (operationType === 'deleteByIndex' && index <= currentStep.index)
     ) {
         return ElementStates.Changing;
     }
@@ -209,18 +209,18 @@ export function getLetterElementHead(step: Step<string>, index: number, operatio
         ADD_OPERATION_TYPE.includes(operation)) {
         return (
             <Circle
-                letter={step.value}
-                state={ElementStates.Changing}
+                letter={ step.value }
+                state={ ElementStates.Changing }
                 isSmall
             />
-        )
+        );
     }
 
     if (!index) {
         return HEAD;
     }
 
-    return "";
+    return '';
 }
 
 export function getLetterElementTail(step: Step<string>,
@@ -233,16 +233,16 @@ export function getLetterElementTail(step: Step<string>,
         DELETE_OPERATION_TYPE.includes(operation)) {
         return (
             <Circle
-                letter={step.value}
-                state={ElementStates.Changing}
+                letter={ step.value }
+                state={ ElementStates.Changing }
                 isSmall
             />
-        )
+        );
     }
 
     if (index === length - 1) {
         return TAIL;
     }
 
-    return "";
+    return '';
 }

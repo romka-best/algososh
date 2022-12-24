@@ -1,73 +1,77 @@
 .content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  width: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: fit-content;
 }
 
 .circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .small {
-  width: 56px;
-  height: 56px;
+    width: 56px;
+    height: 56px;
 }
 
 .letter {
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .default {
-  border: 4px solid var(--default-color);
+    border: 4px solid var(--default-color);
 }
 
 .changing {
-  border: 4px solid var(--changing-color);
+    border: 4px solid var(--changing-color);
 }
 
 .modified {
-  border: 4px solid var(--modified-color);
+    border: 4px solid var(--modified-color);
 }
 
 .absolute {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .head.element {
-  top: -70px;
+    top: -70px;
 }
 
 .head.string {
-  top: -30px;
+    top: -30px;
 }
 
 .index {
-  bottom: -30px;
+    bottom: -30px;
+}
+
+.tail {
+    /* for autotests */
 }
 
 .tail30.string {
-  bottom: -30px;
+    bottom: -30px;
 }
 
 .tail60.string {
-  bottom: -60px;
+    bottom: -60px;
 }
 
 .tail30.element {
-  bottom: -70px;
+    bottom: -70px;
 }
 
 .tail60.element {
-  bottom: -100px;
+    bottom: -100px;
 }

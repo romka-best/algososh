@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 export function useForm(inputValues: Record<string, string>) {
-    const [values, setValues] = React.useState(inputValues);
+    const [ values, setValues ] = React.useState(inputValues);
 
     const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-        const {value, name} = event.currentTarget;
-        setValues({...values, [name]: value});
+        const { value, name } = event.currentTarget;
+        setValues({ ...values, [name]: value });
     };
-    return {values, handleChange, setValues};
+    return { values, handleChange, setValues };
 }

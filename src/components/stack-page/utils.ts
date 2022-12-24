@@ -1,9 +1,9 @@
-import Stack from "./Stack";
+import Stack from './Stack';
 
-import {ElementStates} from "../../types/element-states";
+import { ElementStates } from '../../types/element-states';
 
-import {Step} from "./stack-page.types";
-import {OperationTypes} from "./stack-page.types";
+import { Step } from './stack-page.types';
+import { OperationTypes } from './stack-page.types';
 
 export function push<T>(value: T, list: Stack<T>) {
     const steps: Step<T>[] = [];
@@ -47,13 +47,13 @@ export function clear<T>(list: Stack<T>) {
     const steps: Step<T>[] = [];
 
     steps.push({
-        list: list,
+        list,
     });
 
     list.clear();
 
     steps.push({
-        list: list,
+        list,
     });
 
     return steps;

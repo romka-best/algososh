@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortingPage Отображение Начальное состяние 1`] = `
+<main
+  className="content"
+>
+  <div
+    className="titleBox"
+  >
+    <h1
+      className="text text_type_h2 text_color_h1 title"
+    >
+      МБОУ АЛГОСОШ
+    </h1>
+    <span
+      className="text text_type_fibonacci text_color_secondary subtitle"
+    >
+      им. Фибоначчи
+    </span>
+  </div>
+  <div
+    className="contentCard"
+  >
+    <a
+      className="link"
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="button returnButton"
+        type="button"
+      >
+        <svg
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M12.7073 4.29289C13.0978 4.68342 13.0978 5.31658 12.7073 5.70711L7.41436 11H19.0002C19.5524 11 20.0002 11.4477 20.0002 12C20.0002 12.5523 19.5524 13 19.0002 13H7.41436L12.7073 18.2929C13.0978 18.6834 13.0978 19.3166 12.7073 19.7071C12.3167 20.0976 11.6836 20.0976 11.293 19.7071L3.58594 12L11.293 4.29289C11.6836 3.90237 12.3167 3.90237 12.7073 4.29289Z"
+            fill="#0032FF"
+            fillRule="evenodd"
+          />
+        </svg>
+        <p
+          className="text text_type_button text_color_link ml-4"
+        >
+          К оглавлению
+        </p>
+      </button>
+    </a>
+    <h3
+      className="text text_type_h3 text_color_h3 cardTitle"
+    >
+      Сортировка массива
+    </h3>
+    <div
+      className="root"
+    >
+      <form
+        className="form"
+        onReset={[Function]}
+        onSubmit={[Function]}
+      >
+        <div
+          className="radioButtons"
+        >
+          <div
+            className="content"
+          >
+            <input
+              checked={true}
+              className="input"
+              disabled={false}
+              id="ChoiceRadioInput"
+              onChange={[Function]}
+              type="radio"
+            />
+            <label
+              className="text text_type_button label"
+              htmlFor="ChoiceRadioInput"
+            >
+              Выбор
+            </label>
+          </div>
+          <div
+            className="content"
+          >
+            <input
+              checked={false}
+              className="input"
+              disabled={false}
+              id="BubbleRadioInput"
+              onChange={[Function]}
+              type="radio"
+            />
+            <label
+              className="text text_type_button label"
+              htmlFor="BubbleRadioInput"
+            >
+              Пузырёк
+            </label>
+          </div>
+        </div>
+        <div
+          className="choiceButtons"
+        >
+          <button
+            className="text text_type_button text_color_primary button"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            <svg
+              fill="inherit"
+              height="12"
+              viewBox="0 0 20 12"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 0C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2H11C11.5523 2 12 1.55228 12 1C12 0.447715 11.5523 0 11 0H1ZM0 6C0 5.44772 0.447715 5 1 5H15C15.5523 5 16 5.44772 16 6C16 6.55228 15.5523 7 15 7H1C0.447715 7 0 6.55228 0 6ZM0 11C0 10.4477 0.447715 10 1 10H19C19.5523 10 20 10.4477 20 11C20 11.5523 19.5523 12 19 12H1C0.447716 12 0 11.5523 0 11Z"
+                fill="inherit"
+                fillOpacity="0.85"
+              />
+            </svg>
+            <p
+              className="text ml-5"
+            >
+              По возрастанию
+            </p>
+          </button>
+          <button
+            className="text text_type_button text_color_primary button"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            <svg
+              fill="inherit"
+              height="12"
+              viewBox="0 0 20 12"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M0 1C0 0.44772 0.44772 0 1 0H19C19.5523 0 20 0.44772 20 1C20 1.55228 19.5523 2 19 2H1C0.44772 2 0 1.55228 0 1ZM0 6C0 5.4477 0.44772 5 1 5H15C15.5523 5 16 5.4477 16 6C16 6.5523 15.5523 7 15 7H1C0.44772 7 0 6.5523 0 6ZM1 10C0.44772 10 0 10.4477 0 11C0 11.5523 0.44772 12 1 12H11C11.5523 12 12 11.5523 12 11C12 10.4477 11.5523 10 11 10H1Z"
+                fill="inherit"
+                fillOpacity="0.85"
+                fillRule="evenodd"
+              />
+            </svg>
+            <p
+              className="text ml-5"
+            >
+              По убыванию
+            </p>
+          </button>
+        </div>
+        <button
+          className="text text_type_button text_color_primary button generateButton"
+          disabled={false}
+          type="reset"
+        >
+          <p
+            className="text"
+          >
+            Новый массив
+          </p>
+        </button>
+      </form>
+      <div
+        className="columns"
+      />
+    </div>
+  </div>
+  <p
+    className="text text_type_column text_color_input mt-14 copyright"
+  >
+    © Сделано в Практикуме Романом Даниловым.
+  </p>
+</main>
+`;
